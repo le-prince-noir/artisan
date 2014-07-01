@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ArtisanJoaillier</title>
+    <%= stylesheet_link_tag    "reset" %>
+    <%= stylesheet_link_tag    "bootstrap", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag    "style" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+    <p class="navbar-text pull-right">
+    <ul class="nav nav-tabs" role="tablist">
+        <li><%= link_to 'Ingredients', ingredients_path() %></li>
+        <li><%= link_to 'Products', products_path() %></li>
+    <% if user_signed_in? %>
+
+        <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+        <li><span>Logged in as <strong><%= current_user.email %></strong></span></li>
+    <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+        <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+    <% end %>
+    </ul>
+
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+
+        <%= yield %>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+input[type="submit"]{
+    float: right;
+    text-transform: uppercase;
+}

@@ -1,0 +1,50 @@
+<%# Gestion des erreurs %>
+
+<% if @product.errors.any? %>
+    <h2><%= pluralize(@product.errors.count, "erreur") %></h2>
+    <ul>
+        <% @product.errors.each do |attr, msg| %>
+            <li><%= "#{attr} #{msg}\n" if @product.errors[attr].first == msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<!-- <%= debug @product.errors %> -->
+<%= form_for @product, :html => {:class => 'form-horizontal'} do |f| %>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label"><%= f.label :title %></label>
+        <div class="col-sm-10">
+            <%= f.text_field :title, class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label"><%= f.label :description %></label>
+        <div class="col-sm-10">
+            <%= f.text_area :description, class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label"><%= f.label :marge %></label>
+        <div class="col-sm-10">
+            <%= f.text_field :marge, class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+		<label class="col-sm-2 control-label">Ingredients</label>
+		<% @ingredients.each do |i|%>
+			<div class="checkbox">
+				<div class="col-sm-offset-2 col-sm-10">
+					<label>
+						<%= check_box_tag "product[products][]", i.id, false, { id: "product_"+i.title } %>
+						<%= f.label i.title %>
+					</label>
+				</div>
+			</div>
+		<% end %>
+		</div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit "ajouter", class: "btn btn-default" %>
+        </div>
+    </div>
+<% end %>

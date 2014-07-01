@@ -1,0 +1,26 @@
+
+<h2>Liste des ingredients:</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom de l'ingrédient</th>
+      <th>Description</th>
+      <th>Prix</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+<tbody>
+  <% @ingredients.each do |ingredient|%>
+    <tr>
+      <td><%= ingredient.id %></td>
+      <td><%= ingredient.title %></td>
+      <td><%= ingredient.description %></td>
+      <td><span class="badge"><%= ingredient.price %> €</span></td>
+      <td><%= link_to 'Show', ingredient, class: "btn btn-default" %> - <%= link_to 'Edit', edit_ingredient_path(ingredient), class: "btn btn-warning" %> - <%= link_to "delete ingredient", ingredient, method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New ingredient", {controller: "ingredients", action: "new" }, class: "btn btn-primary" %>
