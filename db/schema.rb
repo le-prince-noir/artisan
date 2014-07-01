@@ -36,13 +36,15 @@ ActiveRecord::Schema.define(version: 20140701080933) do
     t.datetime "updated_at"
   end
 
-  create_table "historicsingredients", force: true do |t|
+  create_table "historics_ingredients", force: true do |t|
+    t.integer  "id_ingredient"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "historicsproducts", force: true do |t|
+  create_table "historics_products", force: true do |t|
+    t.integer  "id_product"
     t.float    "marge"
     t.datetime "created_at"
     t.datetime "updated_at"

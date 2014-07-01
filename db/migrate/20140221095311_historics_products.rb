@@ -1,8 +1,9 @@
 class HistoricsProducts < ActiveRecord::Migration
   	def change
-	    create_table :historicsproducts do |t|
+	    create_table :historics_products do |t|
+          t.integer :id_product
 	      t.float :marge
-	      t.timestamps 
+	      t.timestamps
   		end
 	end
 end

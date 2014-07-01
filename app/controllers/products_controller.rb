@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     if params[:product][:ingredients]
       params[:product][:ingredients].each do |id_ingredient|
         addIngredients.push(Ingredient.find(id_ingredient))
-      end
+    end
       @product.ingredients = addIngredients
     else
       @product.ingredients = addIngredients

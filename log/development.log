@@ -33500,3 +33500,1780 @@ Processing by ProductsController#edit as HTML
   Rendered products/edit.html.erb within layouts/application (4.7ms)
   [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
 Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 1.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (9.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (9.6ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to Products (20140221091134)
+  [1m[35m (6.4ms)[0m  CREATE TABLE `products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `slug` varchar(255), `description` text, `image` text, `marge` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221091134')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Ingredients (20140221092444)
+  [1m[35m (7.8ms)[0m  CREATE TABLE `ingredients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `slug` varchar(255), `description` text, `image` text, `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092444')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Categories (20140221092551)
+  [1m[35m (6.1ms)[0m  CREATE TABLE `categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `slug` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092551')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Clients (20140221092605)
+  [1m[35m (6.0ms)[0m  CREATE TABLE `clients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `lastname` varchar(255), `firstname` varchar(255), `email` varchar(255), `tel` varchar(255), `address` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092605')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Orders (20140221092617)
+  [1m[35m (6.9ms)[0m  CREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `date` varchar(255), `global_price` varchar(255)) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092617')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Carts (20140221092626)
+  [1m[35m (6.4ms)[0m  CREATE TABLE `carts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092626')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to ProductsCart (20140221092644)
+  [1m[35m (5.9ms)[0m  CREATE TABLE `productscart` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `quantity` float, `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092644')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to HistoricsIngredients (20140221092653)
+  [1m[35m (6.4ms)[0m  CREATE TABLE `historics_ingredients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092653')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to HistoricsProducts (20140221095311)
+  [1m[35m (6.3ms)[0m  CREATE TABLE `historics_products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `marge` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221095311')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to IngredientsProducts (20140630123531)
+  [1m[35m (7.0ms)[0m  CREATE TABLE `ingredients_products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `product_id` int(11), `ingredient_id` int(11)) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140630123531')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20140701080933)
+  [1m[35m (6.3ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (7.5ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`) [0m
+  [1m[35m (7.3ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140701080933')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:50:11 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.6ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 11ms (Views: 6.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 12:50:11 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 12:50:12 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (6.2ms)
+  Rendered ingredients/new.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 38ms (Views: 11.5ms | ActiveRecord: 24.1ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Améthyste", "description"=>"C'est violet", "price"=>"438"}, "commit"=>"ajouter"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 10:50:21', 'C\'est violet', 438.0, 'Améthyste', '2014-07-01 10:50:21')[0m
+  [1m[35m (6.1ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/ingredients/1
+Completed 302 Found in 11ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/ingredients/1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 1 LIMIT 1[0m
+  Rendered ingredients/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:21 +0200
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 12:50:23 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 12:50:24 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (1.6ms)
+  Rendered ingredients/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Jade", "description"=>"C'est vert", "price"=>"666"}, "commit"=>"ajouter"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 10:50:30', 'C\'est vert', 666.0, 'Jade', '2014-07-01 10:50:30')
+  [1m[36m (11.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/ingredients/2
+Completed 302 Found in 14ms (ActiveRecord: 11.8ms)
+
+
+Started GET "/ingredients/2" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mIngredient Load (0.5ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 2 LIMIT 1
+  Rendered ingredients/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:30 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:50:31 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 12:50:32 +0200
+Processing by ProductsController#new as HTML
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered products/_form.html.erb (9.8ms)
+  Rendered products/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 38ms (Views: 13.6ms | ActiveRecord: 21.7ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Bague Jade", "description"=>"c'est beauuuuwwwww", "marge"=>"50", "ingredients"=>["2"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 10:50:57', 'c\'est beauuuuwwwww', 50.0, 'Bague Jade', '2014-07-01 10:50:57')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (1, 2)
+  [1m[36m (6.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products/1
+Completed 302 Found in 12ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 1 LIMIT 1
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 12:50:57 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:50:59 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/1/edit" for 127.0.0.1 at 2014-07-01 12:51:01 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 1 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 1
+  Rendered products/_form.html.erb (3.5ms)
+  Rendered products/edit.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:51:04 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-07-01 12:51:05 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 31ms (Views: 16.0ms | ActiveRecord: 12.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "user"=>{"email"=>"samy-kantari@cifacom.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'samy-kantari@cifacom.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`created_at`, `email`, `encrypted_password`, `updated_at`) VALUES ('2014-07-01 10:51:19', 'samy-kantari@cifacom.com', '$2a$10$M5rY3TGNwd0pSLEG7xqcfOf.pbwKGSrD6nBJwvdix50SICe282B5y', '2014-07-01 10:51:19')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `users` SET `last_sign_in_at` = '2014-07-01 10:51:19', `current_sign_in_at` = '2014-07-01 10:51:19', `last_sign_in_ip` = '127.0.0.1', `current_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2014-07-01 10:51:19' WHERE `users`.`id` = 1[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 73ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (1.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 12:51:19 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:51:40 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.5ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/products/1/edit" for 127.0.0.1 at 2014-07-01 12:51:41 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 1 LIMIT 1[0m
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 1[0m
+  Rendered products/_form.html.erb (5.1ms)
+  Rendered products/edit.html.erb within layouts/application (5.7ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:53:23 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.6ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (9.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 27ms (Views: 20.4ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 12:53:32 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.4ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 12:53:32 +0200
+Processing by ProductsController#new as HTML
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered products/_form.html.erb (20.2ms)
+  Rendered products/new.html.erb within layouts/application (20.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 28ms (Views: 14.8ms | ActiveRecord: 10.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (13.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (10.9ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to Products (20140221091134)
+  [1m[35m (6.5ms)[0m  CREATE TABLE `products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `slug` varchar(255), `description` text, `image` text, `marge` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221091134')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to Ingredients (20140221092444)
+  [1m[35m (5.9ms)[0m  CREATE TABLE `ingredients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `slug` varchar(255), `description` text, `image` text, `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092444')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Categories (20140221092551)
+  [1m[35m (6.6ms)[0m  CREATE TABLE `categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `slug` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092551')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Clients (20140221092605)
+  [1m[35m (6.1ms)[0m  CREATE TABLE `clients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `lastname` varchar(255), `firstname` varchar(255), `email` varchar(255), `tel` varchar(255), `address` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092605')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Orders (20140221092617)
+  [1m[35m (6.0ms)[0m  CREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `date` varchar(255), `global_price` varchar(255)) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092617')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to Carts (20140221092626)
+  [1m[35m (5.6ms)[0m  CREATE TABLE `carts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092626')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to ProductsCart (20140221092644)
+  [1m[35m (5.8ms)[0m  CREATE TABLE `productscart` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `quantity` float, `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092644')
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Migrating to HistoricsIngredients (20140221092653)
+  [1m[35m (5.5ms)[0m  CREATE TABLE `historics_ingredients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `id_ingredient` int(11), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221092653')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to HistoricsProducts (20140221095311)
+  [1m[35m (5.6ms)[0m  CREATE TABLE `historics_products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `id_product` int(11), `marge` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140221095311')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to IngredientsProducts (20140630123531)
+  [1m[35m (6.1ms)[0m  CREATE TABLE `ingredients_products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `product_id` int(11), `ingredient_id` int(11)) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140630123531')
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20140701080933)
+  [1m[35m (5.0ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (7.7ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`) [0m
+  [1m[35m (6.9ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140701080933')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 12:57:52 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (1.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 12:57:53 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (6.9ms)
+  Rendered ingredients/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 35ms (Views: 11.6ms | ActiveRecord: 20.2ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 12:58:01 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 13:03:41 +0200
+Processing by IngredientsController#new as HTML
+Completed 500 Internal Server Error in 1ms
+
+SyntaxError (/Users/kantarisamy/Sites/artisan/app/models/ingredient.rb:11: dynamic constant assignment
+        H = HistoricIngredient.new
+           ^):
+  app/controllers/ingredients_controller.rb:11:in `new'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.7ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 13:03:41 +0200
+Processing by IngredientsController#new as HTML
+Completed 500 Internal Server Error in 1ms
+
+SyntaxError (/Users/kantarisamy/Sites/artisan/app/models/ingredient.rb:11: dynamic constant assignment
+        H = HistoricIngredient.new
+           ^):
+  app/controllers/ingredients_controller.rb:11:in `new'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.2ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (8.1ms)
+  Rendered ingredients/new.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 63ms (Views: 12.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 13:06:05 +0200
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 13:06:07 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 13:06:09 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (1.2ms)
+  Rendered ingredients/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 13:06:17 +0200
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Améthyste", "description"=>"C'est violet", "price"=>"456"}, "commit"=>"ajouter"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 11:06:17', 'C\'est violet', 456.0, 'Améthyste', '2014-07-01 11:06:17')
+Mysql2::Error: Table 'artisan-joaillier.historic_ingredients' doesn't exist: SHOW FULL FIELDS FROM `historic_ingredients`
+  [1m[36m (6.0ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 17ms
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Table 'artisan-joaillier.historic_ingredients' doesn't exist: SHOW FULL FIELDS FROM `historic_ingredients`):
+  app/models/ingredient.rb:11:in `addHistory'
+  app/controllers/ingredients_controller.rb:16:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.7ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 13:06:51 +0200
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Améthyste", "description"=>"C'est violet", "price"=>"456"}, "commit"=>"ajouter"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 11:06:51', 'C\'est violet', 456.0, 'Améthyste', '2014-07-01 11:06:51')[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 16ms
+
+NameError (uninitialized constant Ingredient::HistoricsIngredient):
+  app/models/ingredient.rb:11:in `addHistory'
+  app/controllers/ingredients_controller.rb:16:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.5ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Améthyste", "description"=>"C'est violet", "price"=>"456"}, "commit"=>"ajouter"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 11:07:22', 'C\'est violet', 456.0, 'Améthyste', '2014-07-01 11:07:22')[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `historics_ingredients` (`created_at`, `id_ingredient`, `price`, `updated_at`) VALUES ('2014-07-01 11:07:22', 3, 456.0, '2014-07-01 11:07:22')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/ingredients/3
+Completed 302 Found in 40ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/ingredients/3" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 3 LIMIT 1
+  Rendered ingredients/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 59ms (Views: 56.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 13:07:22 +0200
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 13:07:25 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 13:07:54 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 13:07:55 +0200
+Processing by ProductsController#new as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered products/_form.html.erb (31.4ms)
+  Rendered products/new.html.erb within layouts/application (34.7ms)
+Completed 200 OK in 61ms (Views: 39.1ms | ActiveRecord: 20.7ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 13:12:20 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.8ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 18ms (Views: 11.4ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 13:12:21 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (2.2ms)
+  Rendered ingredients/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Jade", "description"=>"C'est vert", "price"=>"666"}, "commit"=>"ajouter"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 11:12:27', 'C\'est vert', 666.0, 'Jade', '2014-07-01 11:12:27')
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `historics_ingredients` (`created_at`, `id_ingredient`, `price`, `updated_at`) VALUES ('2014-07-01 11:12:27', 4, 666.0, '2014-07-01 11:12:27')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/ingredients/4
+Completed 302 Found in 37ms (ActiveRecord: 23.7ms)
+
+
+Started GET "/ingredients/4" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1[0m
+  Rendered ingredients/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 13:12:27 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 13:57:11 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 9ms (Views: 4.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 13:57:12 +0200
+Processing by ProductsController#new as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered products/_form.html.erb (46.8ms)
+  Rendered products/new.html.erb within layouts/application (47.6ms)
+Completed 200 OK in 70ms (Views: 45.0ms | ActiveRecord: 19.8ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 13:57:24 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Produit 1", "description"=>"test", "marge"=>"45", "ingredients"=>["4"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 11:57:24', 'test', 45.0, 'Produit 1', '2014-07-01 11:57:24')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (1, 4)[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 31ms
+
+NoMethodError (undefined method `id_ingredient=' for #<HistoricsProducts:0x007fc39b682408>):
+  app/models/product.rb:13:in `addHistory'
+  app/controllers/products_controller.rb:20:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.7ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 13:57:44 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Produit 1", "description"=>"test", "marge"=>"45", "ingredients"=>["4"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 11:57:44', 'test', 45.0, 'Produit 1', '2014-07-01 11:57:44')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (2, 4)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 34ms
+
+NoMethodError (undefined method `price=' for #<HistoricsProducts:0x007fc39b72a770>):
+  app/models/product.rb:14:in `addHistory'
+  app/controllers/products_controller.rb:20:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (22.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (31.8ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Produit 1", "description"=>"test", "marge"=>"45", "ingredients"=>["4"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 11:57:51', 'test', 45.0, 'Produit 1', '2014-07-01 11:57:51')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (3, 4)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 11:57:51', 3, 45.0, '2014-07-01 11:57:51')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products/3
+Completed 302 Found in 59ms (ActiveRecord: 7.8ms)
+
+
+Started GET "/products/3" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1
+  Rendered products/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 13:57:51 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 13:57:54 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/3/edit" for 127.0.0.1 at 2014-07-01 14:23:03 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3
+  Rendered products/_form.html.erb (41.5ms)
+  Rendered products/edit.html.erb within layouts/application (43.1ms)
+Completed 200 OK in 49ms (Views: 46.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/3/edit" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mProduct Load (0.4ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3[0m
+  Rendered products/_form.html.erb (30.9ms)
+  Rendered products/edit.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 51ms (Views: 32.4ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:24 +0200
+
+
+Started PATCH "/products/3" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+Processing by ProductsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Produit 1", "description"=>"test", "marge"=>"45.0", "ingredients"=>["4"]}, "commit"=>"ajouter", "id"=>"3"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Unpermitted parameters: ingredients
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 7ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:28 +0200
+
+
+Started GET "/products/3/edit" for 127.0.0.1 at 2014-07-01 14:35:34 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProduct Load (0.5ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3
+  Rendered products/_form.html.erb (3.6ms)
+  Rendered products/edit.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.9ms)
+
+
+Started PATCH "/products/3" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+Processing by ProductsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Produit 1.1", "description"=>"test", "marge"=>"45.0", "ingredients"=>["4"]}, "commit"=>"ajouter", "id"=>"3"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Unpermitted parameters: ingredients
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `products` SET `title` = 'Produit 1.1', `updated_at` = '2014-07-01 12:35:50' WHERE `products`.`id` = 3[0m
+  [1m[35m (6.0ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 13ms (ActiveRecord: 7.2ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:50 +0200
+
+
+Started GET "/products/3/edit" for 127.0.0.1 at 2014-07-01 14:35:55 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1
+  [1m[36mIngredient Load (0.6ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3
+  Rendered products/_form.html.erb (5.1ms)
+  Rendered products/edit.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 1.1ms)
+
+
+Started PATCH "/products/3" for 127.0.0.1 at 2014-07-01 14:35:57 +0200
+Processing by ProductsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"Produit 1.1", "description"=>"test", "marge"=>"49", "ingredients"=>["4"]}, "commit"=>"ajouter", "id"=>"3"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 3 LIMIT 1[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 3[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Unpermitted parameters: ingredients
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 12:35:58', 3, 49.0, '2014-07-01 12:35:58')[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `products` SET `marge` = 49.0, `updated_at` = '2014-07-01 12:35:58' WHERE `products`.`id` = 3
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 32ms (ActiveRecord: 20.7ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 24ms (Views: 23.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:35:58 +0200
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 14:36:32 +0200
+Processing by ProductsController#new as HTML
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered products/_form.html.erb (17.0ms)
+  Rendered products/new.html.erb within layouts/application (17.7ms)
+Completed 200 OK in 47ms (Views: 18.6ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"produit 2", "description"=>"test", "marge"=>"76", "ingredients"=>["4"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `historics_products` (`created_at`, `marge`, `updated_at`) VALUES ('2014-07-01 12:36:41', 76.0, '2014-07-01 12:36:41')
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 12:36:41', 'test', 76.0, 'produit 2', '2014-07-01 12:36:41')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (4, 4)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 12:36:41', 4, 76.0, '2014-07-01 12:36:41')[0m
+  [1m[35m (0.6ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/products/4
+Completed 302 Found in 63ms (ActiveRecord: 20.6ms)
+
+
+Started GET "/products/4" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 4 LIMIT 1[0m
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:36:41 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:37:05 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 16ms (Views: 11.8ms | ActiveRecord: 1.7ms)
+
+
+Started DELETE "/products/4" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+Processing by ProductsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "id"=>"4"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 4 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM `ingredients_products` WHERE `ingredients_products`.`product_id` = 4[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `products` WHERE `products`.`id` = 4
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 7ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:07 +0200
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 14:37:09 +0200
+Processing by ProductsController#new as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered products/_form.html.erb (56.9ms)
+  Rendered products/new.html.erb within layouts/application (58.0ms)
+Completed 200 OK in 63ms (Views: 41.1ms | ActiveRecord: 20.9ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 14:37:18 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"produit 3", "description"=>"trea", "marge"=>"43", "ingredients"=>["4"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `historics_products` (`created_at`, `marge`, `updated_at`) VALUES ('2014-07-01 12:37:18', 43.0, '2014-07-01 12:37:18')
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 12:37:18', 'trea', 43.0, 'produit 3', '2014-07-01 12:37:18')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (5, 4)
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products/5
+Completed 302 Found in 34ms (ActiveRecord: 21.2ms)
+
+
+Started GET "/products/5" for 127.0.0.1 at 2014-07-01 14:37:18 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 5 LIMIT 1
+  Rendered products/show.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:37:19 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:39:26 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/5/edit" for 127.0.0.1 at 2014-07-01 14:39:27 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 5 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  [1m[35mIngredient Load (0.5ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 5
+  Rendered products/_form.html.erb (4.7ms)
+  Rendered products/edit.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/products/5" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+Processing by ProductsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"produit 3", "description"=>"trea", "marge"=>"42", "ingredients"=>["4"]}, "commit"=>"ajouter", "id"=>"5"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 5 LIMIT 1[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 5[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Unpermitted parameters: ingredients
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 12:39:30', 5, 42.0, '2014-07-01 12:39:30')[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE `products` SET `marge` = 42.0, `updated_at` = '2014-07-01 12:39:30' WHERE `products`.`id` = 5
+  [1m[36m (11.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 18ms (ActiveRecord: 12.2ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:39:30 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:39:59 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 38ms (Views: 32.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:40:01 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 14:40:02 +0200
+Processing by ProductsController#new as HTML
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered products/_form.html.erb (21.1ms)
+  Rendered products/new.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 32ms (Views: 19.8ms | ActiveRecord: 8.8ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"produit 4", "description"=>"azertyuio", "marge"=>"23", "ingredients"=>["4"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 12:40:12', 'azertyuio', 23.0, 'produit 4', '2014-07-01 12:40:12')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (6, 4)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 12:40:12', 6, 23.0, '2014-07-01 12:40:12')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products/6
+Completed 302 Found in 40ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/products/6" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mProduct Load (0.7ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 6 LIMIT 1
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:12 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:40:17 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/6/edit" for 127.0.0.1 at 2014-07-01 14:40:19 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`id` = 6 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 6
+  Rendered products/_form.html.erb (3.5ms)
+  Rendered products/edit.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/products/6" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+Processing by ProductsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"produit 4", "description"=>"azertyuio", "marge"=>"22", "ingredients"=>["4"]}, "commit"=>"ajouter", "id"=>"6"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 4 LIMIT 1
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 6[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Unpermitted parameters: ingredients
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE `products` SET `marge` = 22.0, `updated_at` = '2014-07-01 12:40:21' WHERE `products`.`id` = 6[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 12:40:21', 6, 22.0, '2014-07-01 12:40:21')
+  [1m[36m (11.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 19ms (ActiveRecord: 13.1ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:40:21 +0200
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-07-01 14:41:14 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 22ms (Views: 17.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-07-01 14:41:20 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 39ms (Views: 10.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-07-01 14:42:13 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 22ms (Views: 5.9ms | ActiveRecord: 6.1ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "user"=>{"email"=>"samy-kantari@cifacom.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'samy-kantari@cifacom.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 3ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "user"=>{"email"=>"samy-kantari@cifacom.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/shared/_links.erb (0.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 69ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:18 +0200
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 19ms (Views: 13.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:25 +0200
+
+
+Started GET "/ingredients/new" for 127.0.0.1 at 2014-07-01 14:42:26 +0200
+Processing by IngredientsController#new as HTML
+  Rendered ingredients/_form.html.erb (3.4ms)
+  Rendered ingredients/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/ingredients" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+Processing by IngredientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Lapis-lazuli", "description"=>"C'est bleu", "price"=>"435"}, "commit"=>"ajouter"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `ingredients` (`created_at`, `description`, `price`, `title`, `updated_at`) VALUES ('2014-07-01 12:42:43', 'C\'est bleu', 435.0, 'Lapis-lazuli', '2014-07-01 12:42:43')
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `historics_ingredients` (`created_at`, `id_ingredient`, `price`, `updated_at`) VALUES ('2014-07-01 12:42:43', 5, 435.0, '2014-07-01 12:42:43')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/ingredients/5
+Completed 302 Found in 11ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/ingredients/5" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  Rendered ingredients/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 33ms (Views: 31.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:42:43 +0200
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:42:54 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/ingredients/5/edit" for 127.0.0.1 at 2014-07-01 14:42:56 +0200
+Processing by IngredientsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  Rendered ingredients/_form.html.erb (1.9ms)
+  Rendered ingredients/edit.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/ingredients/5" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+Processing by IngredientsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Lapis-lazuli", "description"=>"C'est bleu !", "price"=>"435.0"}, "commit"=>"ajouter", "id"=>"5"}
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `ingredients` SET `description` = 'C\'est bleu !', `updated_at` = '2014-07-01 12:43:02' WHERE `ingredients`.`id` = 5
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/ingredients
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:02 +0200
+
+
+Started GET "/ingredients/5/edit" for 127.0.0.1 at 2014-07-01 14:43:07 +0200
+Processing by IngredientsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  Rendered ingredients/_form.html.erb (1.8ms)
+  Rendered ingredients/edit.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/ingredients/5" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+Processing by IngredientsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Lapis-lazuli", "description"=>"C'est bleu !", "price"=>"437"}, "commit"=>"ajouter", "id"=>"5"}
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `ingredients` SET `price` = 437.0, `updated_at` = '2014-07-01 12:43:10' WHERE `ingredients`.`id` = 5
+  [1m[36m (12.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/ingredients
+Completed 302 Found in 16ms (ActiveRecord: 12.6ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:10 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:11 +0200
+
+
+Started GET "/ingredients/5/edit" for 127.0.0.1 at 2014-07-01 14:43:33 +0200
+Processing by IngredientsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  Rendered ingredients/_form.html.erb (2.1ms)
+  Rendered ingredients/edit.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 18ms (Views: 6.4ms | ActiveRecord: 2.3ms)
+
+
+Started PATCH "/ingredients/5" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+Processing by IngredientsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Lapis-lazuli", "description"=>"C'est bleu !", "price"=>"436"}, "commit"=>"ajouter", "id"=>"5"}
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `ingredients` SET `price` = 436.0, `updated_at` = '2014-07-01 12:43:36' WHERE `ingredients`.`id` = 5
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `historics_ingredients` (`created_at`, `id_ingredient`, `price`, `updated_at`) VALUES ('2014-07-01 12:43:36', 5, 436.0, '2014-07-01 12:43:36')[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/ingredients
+Completed 302 Found in 89ms (ActiveRecord: 23.4ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:43:36 +0200
+
+
+Started GET "/ingredients/5/edit" for 127.0.0.1 at 2014-07-01 14:45:12 +0200
+Processing by IngredientsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1
+  Rendered ingredients/_form.html.erb (1.6ms)
+  Rendered ingredients/edit.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/ingredients/5" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+Processing by IngredientsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Lapis-lazuli", "description"=>"C'est bleu !!!!", "price"=>"436.0"}, "commit"=>"ajouter", "id"=>"5"}
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE `ingredients` SET `description` = 'C\'est bleu !!!!', `updated_at` = '2014-07-01 12:45:21' WHERE `ingredients`.`id` = 5[0m
+  [1m[35m (0.9ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/ingredients
+Completed 302 Found in 5ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.5ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients`[0m
+  Rendered ingredients/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:21 +0200
+
+
+Started GET "/ingredients/5/edit" for 127.0.0.1 at 2014-07-01 14:45:32 +0200
+Processing by IngredientsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1
+  Rendered ingredients/_form.html.erb (1.7ms)
+  Rendered ingredients/edit.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/ingredients/5" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+Processing by IngredientsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "ingredient"=>{"title"=>"Lapis-lazuli", "description"=>"C'est bleu !!!!", "price"=>"439"}, "commit"=>"ajouter", "id"=>"5"}
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `ingredients` SET `price` = 439.0, `updated_at` = '2014-07-01 12:45:36' WHERE `ingredients`.`id` = 5[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `historics_ingredients` (`created_at`, `id_ingredient`, `price`, `updated_at`) VALUES ('2014-07-01 12:45:36', 5, 439.0, '2014-07-01 12:45:36')
+  [1m[36m (6.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/ingredients
+Completed 302 Found in 10ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+Processing by IngredientsController#index as HTML
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered ingredients/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:45:36 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:45:50 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 21ms (Views: 13.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2014-07-01 14:45:51 +0200
+Processing by ProductsController#new as HTML
+  [1m[35mIngredient Load (0.3ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  Rendered products/_form.html.erb (10.1ms)
+  Rendered products/new.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 17ms (Views: 10.5ms | ActiveRecord: 5.7ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GfutM95erqqlq/6qxnntt+O+4cq7rd8WpojbATiuL8o=", "product"=>{"title"=>"produit 9", "description"=>"descr", "marge"=>"60", "ingredients"=>["5"]}, "commit"=>"ajouter"}
+Unpermitted parameters: ingredients
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` WHERE `ingredients`.`id` = 5 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `products` (`created_at`, `description`, `marge`, `title`, `updated_at`) VALUES ('2014-07-01 12:46:25', 'descr', 60.0, 'produit 9', '2014-07-01 12:46:25')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO `ingredients_products` (`product_id`, `ingredient_id`) VALUES (7, 5)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `historics_products` (`created_at`, `id_product`, `marge`, `updated_at`) VALUES ('2014-07-01 12:46:25', 7, 60.0, '2014-07-01 12:46:25')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/products/7
+Completed 302 Found in 37ms (ActiveRecord: 23.9ms)
+
+
+Started GET "/products/7" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 7 LIMIT 1[0m
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 35ms (Views: 34.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-01 14:46:25 +0200
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:46:34 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/products/7/edit" for 127.0.0.1 at 2014-07-01 14:46:35 +0200
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`id` = 7 LIMIT 1[0m
+  [1m[35mIngredient Load (0.6ms)[0m  SELECT `ingredients`.* FROM `ingredients`
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT `ingredients`.* FROM `ingredients` INNER JOIN `ingredients_products` ON `ingredients`.`id` = `ingredients_products`.`ingredient_id` WHERE `ingredients_products`.`product_id` = 7[0m
+  Rendered products/_form.html.erb (5.8ms)
+  Rendered products/edit.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 12ms (Views: 9.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-07-01 14:47:20 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.2ms)
