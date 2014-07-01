@@ -10,11 +10,15 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    # @ingredients = @product.ingredients.build(params[:ingredient])
+
+    addIngredients = [];
+
+    params[:product][:ingredients].each do |id_ingredient|
+      addIngredients.push(Ingredient.find(id_ingredient))
+    end
+    @product.ingredients = addIngredients
     if @product.save
-       # @ingredients_produtcs = @product.ingredients
         redirect_to :action => "show", :id => @product.id
-        #redirect_to @product
     else
       @ingredients = Ingredient.all
       render "new"
@@ -22,16 +26,26 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @ingredients = Ingredient.all
     @product = Product.find(params[:id])
+    @ingredients = Ingredient.all
   end
 
   def update
-    @ingredients = Ingredient.all
     @product = Product.find(params[:id])
+    addIngredients = [];
+
+    if params[:product][:ingredients]
+      params[:product][:ingredients].each do |id_ingredient|
+        addIngredients.push(Ingredient.find(id_ingredient))
+      end
+      @product.ingredients = addIngredients
+    else
+      @product.ingredients = addIngredients
+    end
     if @product.update(product_params)
       redirect_to :action => "index"
     else
+      @ingredients = Ingredient.all
       render "edit"
     end
   end
