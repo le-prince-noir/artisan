@@ -1,6 +1,7 @@
 class Orders < ActiveRecord::Migration
   	def change
 	    create_table :orders do |t|
+          t.integer :id_cart
 	      t.string :date
 	      t.string :global_price
   		end

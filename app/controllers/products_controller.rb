@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
     else
       @product.ingredients = addIngredients
     end
+    # puts YAML::dump(  )
     if @product.update(product_params)
       redirect_to :action => "index"
     else
@@ -63,6 +64,6 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:title, :description, :marge, :ingredients)
+    params.require(:product).permit(:title, :description, :marge, :slug,:image, :ingredients)
   end
 end

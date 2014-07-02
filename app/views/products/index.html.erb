@@ -14,8 +14,16 @@
     <tr>
       <td><%= product.id %></td>
       <td><%= product.title %></td>
-      <td><span class="badge"><%= product.marge %> €</span></td>
-      <td><%= link_to 'Show', product, class: "btn btn-default" %> - <%= link_to 'Edit', edit_product_path(product), class: "btn btn-warning" %> - <%= link_to "delete product", product, method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %></td>
+      <td><span class="badge">
+      <%
+        total = 0
+        product.ingredients.each do |ingredient|
+          total += ingredient.price
+        end
+        total += product.marge
+      %>
+      <%= total %> €</span></td>
+      <td><%= link_to 'Show', product, class: "btn btn-default" %> - <%= link_to 'Edit', edit_product_path(product), class: "btn btn-warning" %> - <%= link_to "delete product", product, method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %> - <%= link_to "Add To Cart", addToCart_path(product.id) %></td>
     </tr>
   <% end %>
   </tbody>

@@ -3,8 +3,13 @@ ArtisanJoaillier::Application.routes.draw do
   devise_for :users
   resources :ingredients
   resources :products
+  # resources :carts
 
   root 'ingredients#index'
+
+  get 'addToCart/:id' => 'carts#addToCart', as: :addToCart
+  get 'cartShow/' => 'carts#show', as: :cartShow
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,7 @@
 class Cart < ActiveRecord::Base
-	belongs_to :orders
-	has_many :products_cart
+
+    has_and_belongs_to_many :products
+    has_and_belongs_to_many :carts_products
+    # has_many :products
+    # has_many :carts_products
 end
