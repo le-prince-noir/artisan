@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new
-    puts YAML::dump( @order.cart )
+    # puts YAML::dump( @order.cart )
     @order.cart = Cart.where(:actif => true).last
     @order.client = Client.find(params[:client])
     if @order.save

@@ -13,6 +13,10 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    puts YAML::dump( params[:image] )
+
+    @ingredient.save_image(@ingredient.image)
+    @ingredient.image = @ingredient.image.original_filename.parameterize
     if @ingredient.save
       redirect_to :action => "show", :id => @ingredient.id
       #redirect_to @ingredient
@@ -47,6 +51,6 @@ class IngredientsController < ApplicationController
 
 private
   def ingredient_params
-    params.require(:ingredient).permit(:title, :description, :price, :slug)
+    params.require(:ingredient).permit(:title, :description, :price, :slug, :image)
   end
 end

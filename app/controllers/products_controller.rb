@@ -17,6 +17,9 @@ class ProductsController < ApplicationController
       addIngredients.push(Ingredient.find(id_ingredient))
     end
     @product.ingredients = addIngredients
+    # puts YAML::dump( params[:image] )
+    @product.save_image(@product.image)
+    @product.image = @product.image.original_filename.parameterize
     if @product.save
         redirect_to :action => "show", :id => @product.id
     else

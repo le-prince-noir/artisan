@@ -2,3 +2,8 @@ input[type="submit"]{
     float: right;
     text-transform: uppercase;
 }
+
+
+.thumb{
+    width: 600px;
+}

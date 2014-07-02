@@ -40,4 +40,14 @@ class Product < ActiveRecord::Base
         return self.ingredients.map(&:price).sum + self.marge
     end
 
+
+    def save_image(upload)
+        name =  upload.original_filename.parameterize
+        directory = "public/images/products"
+        # create the file path
+        path = File.join(directory, name)
+        # write the file
+        File.open(path, "wb") { |f| f.write(upload.read) }
+    end
+
 end
