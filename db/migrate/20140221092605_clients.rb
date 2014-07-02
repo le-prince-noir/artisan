@@ -6,8 +6,7 @@ class Clients < ActiveRecord::Migration
 	      t.string :email
 	      t.string :tel
 	      t.text :address
-	      t.timestamps 
-	      t.timestamps 
+	      t.timestamps
   		end
 	end
 end

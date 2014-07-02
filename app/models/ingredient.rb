@@ -9,6 +9,8 @@ class Ingredient < ActiveRecord::Base
 
     before_save :slug_ingredient
 
+    has_many :historics_ingredients
+
 
     def slug_ingredient
         if self[:slug].empty?
@@ -22,7 +24,7 @@ class Ingredient < ActiveRecord::Base
     def add_history
         if self.price_changed?
             h = HistoricsIngredient.new
-            h.id_ingredient = self.id
+            h.ingredient_id = self.id
             h.price = self.price
 
             h.save

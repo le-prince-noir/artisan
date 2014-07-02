@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-body">
-
+  <% if @cart %>
     <% totalCommande = 0 %>
     <% @cart.carts_products.each do |productCart| %>
     <h2><%=" #{productCart.product.title} : #{productCart.quantity.round(0)}" %></h2>
@@ -11,4 +11,10 @@
     <% end %>
     <p>Total de la commande : <span><%= totalCommande %> €</span></p>
   </div>
+  <%= link_to "Passer commande", new_order_path, :class => 'btn btn-primary'  %>
+  <% else %>
+  Pas de produit
+
+
+  <% end %>
 </div>

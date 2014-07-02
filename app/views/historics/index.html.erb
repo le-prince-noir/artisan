@@ -1,0 +1,42 @@
+<h2>Historiques produits</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom du produit</th>
+      <th>marge</th>
+      <th>date</th>
+    </tr>
+  </thead>
+<tbody>
+  <% @historics_products.each do |historic|%>
+    <tr>
+      <td><%= historic.id %></td>
+      <td><%= historic.product.title %></td>
+      <td><%= historic.marge %> €</td>
+      <td><%= historic.created_at %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h2>Historiques ingrédients</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom du produit</th>
+      <th>marge</th>
+      <th>date</th>
+    </tr>
+  </thead>
+<tbody>
+  <% @historics_ingredients.each do |historic|%>
+    <tr>
+      <td><%= historic.id %></td>
+      <td><%= historic.ingredient.title %></td>
+      <td><%= historic.price %> €</td>
+      <td><%= historic.created_at %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

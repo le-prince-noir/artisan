@@ -6,8 +6,7 @@ class Products < ActiveRecord::Migration
 	      t.text :description
 	      t.text :image
 	      t.float :marge
-	      t.timestamps 
-	      t.timestamps 
+	      t.timestamps
   		end
 	end
 end

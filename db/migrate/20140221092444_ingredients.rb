@@ -6,8 +6,7 @@ class Ingredients < ActiveRecord::Migration
 	      t.text :description
 	      t.text :image
 	      t.float :price
-	      t.timestamps 
-	      t.timestamps 
+	      t.timestamps
   		end
 	end
 end

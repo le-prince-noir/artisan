@@ -24,6 +24,8 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.where(:actif => true).last
+    @client = Client.all
+    @order = Order.new
     # @ProductsCarts = ProductsCarts.where(:id_cart => cart.id)
   end
 

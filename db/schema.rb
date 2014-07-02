@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140701080933) do
 
   create_table "carts", force: true do |t|
     t.integer  "actif"
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,14 +48,14 @@ ActiveRecord::Schema.define(version: 20140701080933) do
   end
 
   create_table "historics_ingredients", force: true do |t|
-    t.integer  "id_ingredient"
+    t.integer  "ingredient_id"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "historics_products", force: true do |t|
-    t.integer  "id_product"
+    t.integer  "product_id"
     t.float    "marge"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -76,9 +77,10 @@ ActiveRecord::Schema.define(version: 20140701080933) do
   end
 
   create_table "orders", force: true do |t|
-    t.integer "id_cart"
-    t.string  "date"
-    t.string  "global_price"
+    t.integer  "client_id"
+    t.string   "global_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "products", force: true do |t|

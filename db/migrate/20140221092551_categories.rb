@@ -4,8 +4,7 @@ class Categories < ActiveRecord::Migration
 	      t.string :title
 	      t.string :slug
 	      t.text :description
-	      t.timestamps 
-	      t.timestamps 
+	      t.timestamps
   		end
 	end
 end

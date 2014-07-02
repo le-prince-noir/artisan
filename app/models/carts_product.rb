@@ -6,7 +6,6 @@ class CartsProduct < ActiveRecord::Base
 
 
     def save_price
-
         # puts YAML::dump( self )
         if self.quantity.nil?
             self.quantity = 1
@@ -21,10 +20,6 @@ class CartsProduct < ActiveRecord::Base
         total += p.marge
 
         self.price = total
-
-        # self.save
-
-
     end
 
 

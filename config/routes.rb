@@ -4,12 +4,14 @@ ArtisanJoaillier::Application.routes.draw do
   resources :ingredients
   resources :products
   resources :clients
-  # resources :carts
+  resources :orders
 
   root 'ingredients#index'
 
   get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart
   get 'cartShow/' => 'carts#show', as: :cartShow
+
+  get 'historics/' => 'historics#index', as: :historics
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,23 @@
+<h2>Valider votre commande</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <% totalCommande = 0 %>
+    <% @cart.carts_products.each do |productCart| %>
+    <p><%=" #{productCart.product.title} : #{productCart.quantity.round(0)} -> #{productCart.product.total * productCart.quantity} €"  %></p>
+      <% total = productCart.product.total %>
+      <% totalCommande += total * productCart.quantity %>
+    <% end %>
+    <p>Total de la commande : <span><%= totalCommande %> €</span></p>
+
+
+        <%= form_for @order, :html => {:class => 'form-horizontal'} do |f| %>
+          <%= select_tag(:client, options_for_select( [['Choissisez votre client', '']] + @client.map{ |client| [client.firstname+' '+client.lastname, client.id]} ) ) %>
+          <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                  <%= f.submit "Commander", class: "btn btn-default" %>
+              </div>
+          </div>
+        <% end %>
+    </div>
+</div>
