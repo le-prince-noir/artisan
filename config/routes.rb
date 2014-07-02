@@ -3,6 +3,7 @@ ArtisanJoaillier::Application.routes.draw do
   devise_for :users
   resources :ingredients
   resources :products
+  resources :clients
   # resources :carts
 
   root 'ingredients#index'

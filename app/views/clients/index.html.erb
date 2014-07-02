@@ -1,0 +1,30 @@
+
+<h2>Liste des clients:</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom du client</th>
+      <th>Prénom du client</th>
+      <th>email</th>
+      <th>tel</th>
+      <th>adresse</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+<tbody>
+  <% @clients.each do |client|%>
+    <tr>
+      <td><%= client.id %></td>
+      <td><%= client.lastname %></td>
+      <td><%= client.firstname %></td>
+      <td><%= client.email %></td>
+      <td><%= client.tel %></td>
+      <td><%= client.address %></td>
+      <td><%= link_to 'Show', client, class: "btn btn-default" %> - <%= link_to 'Edit', edit_client_path(client), class: "btn btn-warning" %> - <%= link_to "delete client", client, method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New client", {controller: "clients", action: "new" }, class: "btn btn-primary" %>

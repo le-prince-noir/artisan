@@ -6,5 +6,4 @@ class Client < ActiveRecord::Base
 	validates :tel, presence: true
 
 	has_many :orders
-	has_many :carts
 end

@@ -14,6 +14,7 @@
     <ul class="nav nav-tabs" role="tablist">
         <li><%= link_to 'Ingredients', ingredients_path() %></li>
         <li><%= link_to 'Products', products_path() %></li>
+        <li><%= link_to 'Clients', clients_path() %></li>
     <% if user_signed_in? %>
         <li><%= link_to 'Votre panier', cartShow_path() %></li>
         <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
