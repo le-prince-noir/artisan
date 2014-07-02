@@ -7,7 +7,7 @@ ArtisanJoaillier::Application.routes.draw do
 
   root 'ingredients#index'
 
-  get 'addToCart/:id' => 'carts#addToCart', as: :addToCart
+  get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart
   get 'cartShow/' => 'carts#show', as: :cartShow
 
   # The priority is based upon order of creation: first created -> highest priority.

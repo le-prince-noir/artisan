@@ -1,9 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-body">
-<%= debug @ProductsCarts %>
-    <% @ProductsCarts.each do |productCart| %>
-        <%= productCart.price %>
-        <%= productCart.price %>
+
+    <% totalCommande = 0 %>
+    <% @cart.carts_products.each do |productCart| %>
+    <h2><%=" #{productCart.product.title} : #{productCart.quantity.round(0)}" %></h2>
+      <% total = productCart.product.total %>
+      <p>Prix individuel : <%= total %> €</p>
+      <p>Prix total : <%= total * productCart.quantity %> €</p>
+      <% totalCommande += total * productCart.quantity %>
     <% end %>
+    <p>Total de la commande : <span><%= totalCommande %> €</span></p>
   </div>
 </div>

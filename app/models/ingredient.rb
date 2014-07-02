@@ -21,7 +21,7 @@ class Ingredient < ActiveRecord::Base
 
     def add_history
         if self.price_changed?
-            h = HistoricsIngredients.new
+            h = HistoricsIngredient.new
             h.id_ingredient = self.id
             h.price = self.price
 

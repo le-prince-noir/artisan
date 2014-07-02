@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 
-  def addToCart
+  def add_to_cart
     if !Cart.where(:actif => true).empty?
       cart = Cart.where(:actif => true).last
     else
@@ -8,9 +8,14 @@ class CartsController < ApplicationController
       cart.actif = 1
       cart.save
     end
-
-    puts YAML::dump( cart.products )
-    cart.products = [Product.find(params[:id])]
+    # puts YAML::dump( params[:id] )
+    if cart.carts_products.map(&:product_id).include?(params[:id].to_i)
+      c = cart.carts_products.where(:product_id => params[:id]).last
+      c.quantity = c.quantity + 1
+      c.save
+    else
+      cart.products << [Product.find(params[:id])]
+    end
     cart.save
 
     redirect_to :controller => 'products', :action => "index"
@@ -18,7 +23,7 @@ class CartsController < ApplicationController
 
 
   def show
-    cart = Cart.where(:actif => true).last
+    @cart = Cart.where(:actif => true).last
     # @ProductsCarts = ProductsCarts.where(:id_cart => cart.id)
   end
 
