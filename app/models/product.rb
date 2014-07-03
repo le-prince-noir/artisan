@@ -9,8 +9,6 @@ class Product < ActiveRecord::Base
     has_many :carts_products
     has_many :carts, :through => :carts_products
 
-    has_many :historics_produits
-
 
     # accepts_nested_attributes_for :ingredients
 
@@ -31,7 +29,7 @@ class Product < ActiveRecord::Base
     def add_history
         if self.marge_changed?
             h = HistoricsProduct.new
-            h.product_id = self.id
+            h.title = self.title
             h.marge = self.marge
             h.save
         end

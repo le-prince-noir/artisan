@@ -20,10 +20,13 @@ class ProductsController < ApplicationController
     end
     @product.ingredients = addIngredients
     # puts YAML::dump( params[:image] )
-    @product.save_image(@product.image)
-    @product.image = @product.image.original_filename
+
+    if @product.image != nil
+      @product.save_image(@product.image)
+      @product.image = @product.image.original_filename
+    end
     if @product.save
-        redirect_to :action => "show", :id => @product.id
+        redirect_to :action => "show", :id => @product.id, :slug => @product.slug
     else
       @ingredients = Ingredient.all
       render "new"
@@ -48,6 +51,11 @@ class ProductsController < ApplicationController
       @product.ingredients = addIngredients
     end
     # puts YAML::dump( @product )
+
+    if @product.image != nil
+      @product.save_image(@product.image)
+      @product.image = @product.image.original_filename
+    end
     if @product.update(product_params)
       redirect_to :action => "index"
     else
