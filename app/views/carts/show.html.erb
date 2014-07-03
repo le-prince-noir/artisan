@@ -1,5 +1,6 @@
 
 <h2>Panier</h2>
+<% if @cart %>
     <% totalCommande = 0 %>
 <table class="table">
   <thead>
@@ -15,15 +16,15 @@
   <% @cart.carts_products.each do |productCart| %>
     <tr>
       <td>
-        <%= productCart.quantity.round(0) %> 
+        <%= productCart.quantity.round(0) %>
         <%# if productCart.quantity > 1 %>
           (<%= link_to "remove one", cartRemoveOne_path(:id => productCart.id), method: :get, data: {confirm: "Realy ? ;("}, class: "" %>)
         <%# end %>
       </td>
       <td>
-        <%= productCart.product.title %> 
+        <%= productCart.product.title %>
       </td>
-    
+
       <td>
         <% total = productCart.product.total %>
         Prix individuel : <%= total %> €
@@ -36,3 +37,10 @@
   </tbody>
 </table>
 
+<%= link_to "Passer commande", new_order_path, :class => 'btn btn-primary'  %>
+
+  <% else %>
+  Pas de produit
+
+
+  <% end %>
