@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20140701080933) do
   end
 
   create_table "orders", force: true do |t|
-    t.integer  "client_id"
+    t.string   "title"
     t.string   "global_price"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <% totalCommande = 0 %>
-    <h2><%= @order.client.lastname %> <%= @order.client.firstname %></h2>
+    <h2><%= @order.title %></h2>
     <% @order.cart.carts_products.each do |productCart| %>
     <p><%=" #{productCart.product.title} : #{productCart.quantity.round(0)}" %><br>
       <% total = productCart.product.total %>
