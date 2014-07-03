@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_filter :check_access, :only => [:add_to_cart, :show]
+  before_filter :check_access
 
 
   def add_to_cart
