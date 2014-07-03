@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+    before_filter :check_access, :only => [:new, :create, :edit, :update, :destroy]
+
   def index
     @products = Product.all
   end
@@ -69,4 +71,6 @@ private
   def product_params
     params.require(:product).permit(:title, :description, :marge, :slug,:image, :ingredients)
   end
+
+
 end

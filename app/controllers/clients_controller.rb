@@ -2,6 +2,8 @@
 #http://www.tutoriaux-rails.com/articles/inscription-et-connexion-d-un-utilisateur-avec-authlogic/
 
 class ClientsController < ApplicationController
+  before_filter :check_access, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
+
 
   def index
     @clients = Client.all

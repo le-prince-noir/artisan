@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  before_filter :check_access, :only => [:add_to_cart, :show]
+
 
   def add_to_cart
     if !Cart.where(:actif => true).empty?

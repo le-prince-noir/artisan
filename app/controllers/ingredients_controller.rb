@@ -2,6 +2,7 @@
 #http://www.tutoriaux-rails.com/articles/inscription-et-connexion-d-un-utilisateur-avec-authlogic/
 
 class IngredientsController < ApplicationController
+  before_filter :check_access, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
     @ingredients = Ingredient.all
