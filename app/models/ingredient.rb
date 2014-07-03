@@ -10,11 +10,7 @@ class Ingredient < ActiveRecord::Base
     before_save :slug_ingredient
 
     def slug_ingredient
-        if self[:slug].empty?
-            self.slug = self.title.parameterize
-        else
-            self.slug = self.slug.parameterize
-        end
+        self.slug  = self[:slug].empty? ? self.title.parameterize : self.slug.parameterize
     end
 
 

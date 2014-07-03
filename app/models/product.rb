@@ -19,11 +19,7 @@ class Product < ActiveRecord::Base
 
 
     def slug_product
-        if self[:slug].empty?
-            self.slug = self.title.parameterize
-        else
-            self.slug = self.slug.parameterize
-        end
+        self.slug = self[:slug].empty? ? self.title.parameterize : self.slug.parameterize
     end
 
     def add_history
