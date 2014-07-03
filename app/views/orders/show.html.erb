@@ -10,6 +10,6 @@
       <% totalCommande += total * productCart.quantity %>
     <% end %>
     <p>Total de la commande : <span><%= totalCommande %> €</span></p>
-    <p>Date de la commande : <%= @order.created_at %></p>
+    <p>Date de la commande : <%= @order.created_at.strftime("%m/%d/%Y") %></p>
   </div>
 </div>
