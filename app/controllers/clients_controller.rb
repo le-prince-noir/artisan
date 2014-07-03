@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      redirect_to :action => "show", :id => @client.id
+      redirect_to :action => "show", :id => @client.id, :slug => @client.firstname+'-'+@client.lastname
       #redirect_to @client
     else
       render "new"
@@ -45,6 +45,14 @@ class ClientsController < ApplicationController
 
   def show
     @client = Client.find(params[:id])
+  end
+
+
+  def mail
+    Client.all.each do |client|
+      ClientMailer.mail_info(client).deliver
+    end
+    redirect_to :action => "index"
   end
 
 private
