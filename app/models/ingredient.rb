@@ -32,7 +32,8 @@ class Ingredient < ActiveRecord::Base
     end
 
     def save_image(upload)
-        name =  upload.original_filename.parameterize
+        # puts YAML::dump( upload )
+        name =  upload.original_filename
         directory = "public/images/ingredients"
         # create the file path
         path = File.join(directory, name)

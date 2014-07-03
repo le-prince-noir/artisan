@@ -13,10 +13,10 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    puts YAML::dump( params[:image] )
+    # puts YAML::dump( params[:image] )
 
     @ingredient.save_image(@ingredient.image)
-    @ingredient.image = @ingredient.image.original_filename.parameterize
+    @ingredient.image = @ingredient.image.original_filename
     if @ingredient.save
       redirect_to :action => "show", :id => @ingredient.id
       #redirect_to @ingredient
@@ -31,6 +31,9 @@ class IngredientsController < ApplicationController
 
   def update
     @ingredient = Ingredient.find(params[:id])
+    puts YAML::dump( @ingredient )
+    @ingredient.save_image(@ingredient.image)
+    @ingredient.image = @ingredient.image.original_filename
     if @ingredient.update(ingredient_params)
       redirect_to :action => "index"
     else

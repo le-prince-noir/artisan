@@ -21,7 +21,7 @@
       <td><%= client.email %></td>
       <td><%= client.tel %></td>
       <td><%= client.address %></td>
-      <td><%= link_to 'Show', client, class: "btn btn-default" %> - <%= link_to 'Edit', edit_client_path(client), class: "btn btn-warning" %> - <%= link_to "delete client", client, method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %></td>
+      <td><%= link_to 'Show', client_show_path(:id => client.id, :slug => client.firstname+'-'+client.lastname), class: "btn btn-default" %> - <%= link_to 'Edit', client_update_path(:id => client.id, :slug => client.firstname+'-'+client.lastname), class: "btn btn-warning" %> - <%= link_to "delete client", client_path(:id =>client.id), method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %></td>
     </tr>
   <% end %>
   </tbody>

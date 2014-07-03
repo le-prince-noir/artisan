@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     @product.ingredients = addIngredients
     # puts YAML::dump( params[:image] )
     @product.save_image(@product.image)
-    @product.image = @product.image.original_filename.parameterize
+    @product.image = @product.image.original_filename
     if @product.save
         redirect_to :action => "show", :id => @product.id
     else
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     addIngredients = [];
-
+    # puts YAML::dump( params[:product] )
     if params[:product][:ingredients]
       params[:product][:ingredients].each do |id_ingredient|
         addIngredients.push(Ingredient.find(id_ingredient))
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
     else
       @product.ingredients = addIngredients
     end
-    # puts YAML::dump(  )
+    # puts YAML::dump( @product )
     if @product.update(product_params)
       redirect_to :action => "index"
     else

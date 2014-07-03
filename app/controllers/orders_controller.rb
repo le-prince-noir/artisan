@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @order.cart = Cart.where(:actif => true).last
     @order.client = Client.find(params[:client])
     if @order.save
+      self.mail(@order.client)
       redirect_to :action => "show", :id => @order.id
       #redirect_to @order
     else
@@ -25,6 +26,11 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+  end
+
+
+  def mail(client)
+    ClientMailer.valid_commande(client).deliver
   end
 
 end

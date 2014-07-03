@@ -16,7 +16,7 @@
       <td><%= order.client.firstname %> <%= order.client.lastname %></td>
       <td><%= order.created_at %></td>
       <td><%= order.global_price %></td>
-      <td><%= link_to 'Show', order, class: "btn btn-default" %></td>
+      <td><%= link_to 'Show', order_path(order.id), class: "btn btn-default" %></td>
     </tr>
   <% end %>
   </tbody>

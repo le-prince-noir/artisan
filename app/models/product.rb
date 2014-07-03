@@ -42,7 +42,7 @@ class Product < ActiveRecord::Base
 
 
     def save_image(upload)
-        name =  upload.original_filename.parameterize
+        name =  upload.original_filename
         directory = "public/images/products"
         # create the file path
         path = File.join(directory, name)

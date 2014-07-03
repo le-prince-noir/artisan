@@ -1,9 +1,9 @@
 ArtisanJoaillier::Application.routes.draw do
 
   devise_for :users
-  resources :ingredients
-  resources :products
-  resources :clients
+  # resources :ingredients
+  # resources :products
+  # resources :clients
   resources :orders
 
   root 'ingredients#index'
@@ -12,6 +12,25 @@ ArtisanJoaillier::Application.routes.draw do
   get 'cartShow/' => 'carts#show', as: :cartShow
 
   get 'historics/' => 'historics#index', as: :historics
+
+  resources :products, :except => ['show', 'edit', 'update']
+  get    'products/show/:id/:slug' => 'products#show', :as => 'product_show'
+  get    'products/edit/:id/:slug' => 'products#edit', :as => 'product_update'
+  patch    'products/:id/' => 'products#update'
+  put    'products/:id/' => 'products#update'
+
+  resources :ingredients, :except => ['show', 'edit', 'update']
+  get    'ingredients/show/:id/:slug' => 'ingredients#show', :as => 'ingredient_show'
+  get    'ingredients/edit/:id/:slug' => 'ingredients#edit', :as => 'ingredient_update'
+  patch    'ingredients/:id' => 'ingredients#update'
+  put    'ingredients/:id' => 'ingredients#update'
+
+  resources :clients, :except => ['show', 'edit', 'update']
+  get    'clients/show/:id/:slug' => 'clients#show', :as => 'client_show'
+  get    'clients/edit/:id/:slug' => 'clients#edit', :as => 'client_update'
+  patch    'clients/:id' => 'clients#update'
+  put    'clients/:id' => 'clients#update'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

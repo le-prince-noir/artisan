@@ -11,8 +11,9 @@
 <tbody>
   <% @historics_products.each do |historic|%>
     <tr>
+    <%= debug historic.product %>
       <td><%= historic.id %></td>
-      <td><%= historic.product.title %></td>
+      <td><%= historic.product %></td>
       <td><%= historic.marge %> €</td>
       <td><%= historic.created_at %></td>
     </tr>
