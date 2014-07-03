@@ -1,5 +1,5 @@
 class HistoricsController < ApplicationController
-    before_filter :check_access, :only => [:index]
+    before_filter :check_access
 
 
   def index

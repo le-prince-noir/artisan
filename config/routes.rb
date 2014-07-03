@@ -6,6 +6,7 @@ ArtisanJoaillier::Application.routes.draw do
   # resources :clients
   resources :orders
 
+
   root 'ingredients#index'
 
   get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart
@@ -32,6 +33,8 @@ ArtisanJoaillier::Application.routes.draw do
   get    'clients/edit/:id/:slug' => 'clients#edit', :as => 'client_update'
   patch    'clients/:id' => 'clients#update'
   put    'clients/:id' => 'clients#update'
+
+  get 'mails_clients/' => 'clients#mail', as: :mails_clients
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :check_access, :only => [:new, :create, :mail]
+  before_filter :check_access
 
   def new
     @order = Order.new
