@@ -1,20 +1,38 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-  <% if @cart %>
+
+<h2>Panier</h2>
     <% totalCommande = 0 %>
-    <% @cart.carts_products.each do |productCart| %>
-    <h2><%=" #{productCart.product.title} : #{productCart.quantity.round(0)}" %></h2>
-      <% total = productCart.product.total %>
-      <p>Prix individuel : <%= total %> €</p>
-      <p>Prix total : <%= total * productCart.quantity %> €</p>
-      <% totalCommande += total * productCart.quantity %>
-    <% end %>
-    <p>Total de la commande : <span><%= totalCommande %> €</span></p>
-  </div>
-  <%= link_to "Passer commande", new_order_path, :class => 'btn btn-primary'  %>
-  <% else %>
-  Pas de produit
-
-
+<table class="table">
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Nom de l'ingrédient</th>
+      <th>Prix individuel</th>
+      <th>Prix total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+<tbody>
+  <% @cart.carts_products.each do |productCart| %>
+    <tr>
+      <td>
+        <%= productCart.quantity.round(0) %> 
+        <%# if productCart.quantity > 1 %>
+          (<%= link_to "remove one", cartRemoveOne_path(:id => productCart.id), method: :get, data: {confirm: "Realy ? ;("}, class: "" %>)
+        <%# end %>
+      </td>
+      <td>
+        <%= productCart.product.title %> 
+      </td>
+    
+      <td>
+        <% total = productCart.product.total %>
+        Prix individuel : <%= total %> €
+      </td>
+      <td>Prix total : <%= total * productCart.quantity %> €</td>
+      <td><%= link_to "remove from cart", cartDelete_path(:id => productCart.id), method: :delete, data: {confirm: "Realy ? ;("}, class: "btn btn-danger" %></td>
+    </tr>
+    <% totalCommande += total * productCart.quantity %>
   <% end %>
-</div>
+  </tbody>
+</table>
+

@@ -10,6 +10,8 @@ ArtisanJoaillier::Application.routes.draw do
 
   get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart
   get 'cartShow/' => 'carts#show', as: :cartShow
+  delete 'cart/delete/:id' => 'carts#destroy', as: :cartDelete
+  get 'cart/removeOne/:id' => 'carts#removeOne', as: :cartRemoveOne
 
   get 'historics/' => 'historics#index', as: :historics
 

@@ -24,6 +24,21 @@ class CartsController < ApplicationController
   end
 
 
+  def destroy
+    cart = Cart.where(:actif => true).last
+    puts YAML::dump( cart.carts_products )
+    if cart.carts_products.find(params[:id]).destroy
+      redirect_to :action => "show"
+    end
+  end
+
+  def removeOne
+    cart = Cart.where(:actif => true).last
+    puts YAML::dump( cart.carts_products )
+    cart.carts_products.find(params[:id]).remove_one
+    redirect_to :action => "show"
+  end
+
   def show
     @cart = Cart.where(:actif => true).last
     @client = Client.all
