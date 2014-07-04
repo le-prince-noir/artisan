@@ -9,6 +9,8 @@ class Ingredient < ActiveRecord::Base
 
     before_save :slug_ingredient
 
+    before_destroy :cleanup
+
     def slug_ingredient
         self.slug  = self[:slug].empty? ? self.title.parameterize : self.slug.parameterize
     end
@@ -24,13 +26,25 @@ class Ingredient < ActiveRecord::Base
         end
     end
 
-    def save_image(upload)
+    def save_image(upload, name)
         # puts YAML::dump( upload )
-        name =  upload.original_filename
+        ext = upload.original_filename.split('.').last.to_s
+        timestamp = Time.now.to_i.to_s
+        name =  name.parameterize
+        name = name+'_'+timestamp+'.'+ext
+
         directory = "public/images/ingredients"
         # create the file path
         path = File.join(directory, name)
         # write the file
         File.open(path, "wb") { |f| f.write(upload.read) }
+
+        return name
     end
+
+  def cleanup
+        if File.exist?("public/images/ingredients/#{self.image}")
+            File.delete("public/images/ingredients/#{self.image}")
+        end
+  end
 end

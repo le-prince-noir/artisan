@@ -2,8 +2,8 @@
   <div class="panel-body">
     <h2><%= @ingredient.title %></h2>
     <p><%= @ingredient.description %></p>
-    <p>Création : <%= @ingredient.created_at %></p>
-    <p>Maj : <%= @ingredient.updated_at %></p>
+    <p>Création : <%= @ingredient.created_at.strftime("%m/%d/%Y") %></p>
+    <p>Maj : <%= @ingredient.updated_at.strftime("%m/%d/%Y") %></p>
     <span class="badge"><%= @ingredient.price %> €</span>
     <% if @ingredient.image != nil %>
     	<%= image_tag("ingredients/"+@ingredient.image, :class => "thumb") %>

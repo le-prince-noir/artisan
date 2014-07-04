@@ -9,11 +9,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new
-    # puts YAML::dump( @order.cart )
     @order.cart = Cart.where(:actif => true).last
-    @order.client = Client.find(params[:client])
+    client = Client.find(params[:client])
+    @order.title = client.firstname+' '+client.lastname
     if @order.save
-      self.mail(@order.client)
+      self.mail(client)
       redirect_to :action => "show", :id => @order.id
       #redirect_to @order
     else
