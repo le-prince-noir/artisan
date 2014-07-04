@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
 
 	validates :title, length: {minimum:2}
 	validates :description, length: {minimum:3}
-	validates :marge, presence: true
+	validates :marge, presence: true, numericality: true
 
     has_and_belongs_to_many :ingredients
 

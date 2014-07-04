@@ -1,12 +1,11 @@
 <%# Gestion des erreurs %>
 
 <% if @product.errors.any? %>
-    <h2><%= pluralize(@product.errors.count, "erreur") %></h2>
-    <ul>
+    <p class="alert alert-danger">
         <% @product.errors.each do |attr, msg| %>
-            <li><%= "#{attr} #{msg}\n" if @product.errors[attr].first == msg %></li>
+            <%= "#{attr} #{msg}\n" if @product.errors[attr].first == msg %> <br>
         <% end %>
-    </ul>
+    </p>
 <% end %>
 
 <%= form_for @product, :html => {:class => 'form-horizontal', :multipart => true} do |f| %>

@@ -14,19 +14,25 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     addIngredients = [];
+    if params[:product][:ingredients] != nil
+      params[:product][:ingredients].each do |id_ingredient|
+        addIngredients.push(Ingredient.find(id_ingredient))
+      end
+      @product.ingredients = addIngredients
+      # puts YAML::dump( params )
 
-    params[:product][:ingredients].each do |id_ingredient|
-      addIngredients.push(Ingredient.find(id_ingredient))
-    end
-    @product.ingredients = addIngredients
-    # puts YAML::dump( params )
-
-    if @product.image != nil && defined?(@product.image) && (@product.image.original_filename != '')
-      @product.image  = @product.save_image(@product.image, @product.title)
-    end
-    if @product.save
-        redirect_to :action => "show", :id => @product.id, :slug => @product.slug
+      if @product.image != nil && defined?(@product.image) && (@product.image.original_filename != '')
+        @product.image  = @product.save_image(@product.image, @product.title)
+      end
+      if @product.save
+          redirect_to :action => "show", :id => @product.id, :slug => @product.slug
+      else
+        @ingredients = Ingredient.all
+        render "new"
+      end
     else
+      p "?"
+      flash[:alert] = "au moins 1 ingredient est requis"
       @ingredients = Ingredient.all
       render "new"
     end

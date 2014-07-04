@@ -1,12 +1,11 @@
 <%# Gestion des erreurs %>
 
 <% if @ingredient.errors.any? %>
-    <h2><%= pluralize(@ingredient.errors.count, "erreur") %></h2>
-    <ul>
+    <p class="alert alert-danger">
         <% @ingredient.errors.each do |attr, msg| %>
-            <li><%= "#{attr} #{msg}\n" if @ingredient.errors[attr].first == msg %></li>
+            <%= "#{attr} #{msg}\n" if @ingredient.errors[attr].first == msg %>
         <% end %>
-    </ul>
+    </p>
 <% end %>
 <%= form_for @ingredient, :html => {:class => 'form-horizontal', :multipart => true} do |f| %>
 <%= f.file_field :image %>
