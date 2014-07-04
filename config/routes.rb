@@ -37,6 +37,8 @@ ArtisanJoaillier::Application.routes.draw do
   get 'mails_clients/' => 'clients#mail', as: :mails_clients
 
 
+  get '*path' => redirect('/404.html')
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

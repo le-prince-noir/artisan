@@ -54,7 +54,7 @@ class Product < ActiveRecord::Base
     end
 
     def cleanup
-        if File.exist?("public/images/products/#{self.image}")
+        if self.image != nil && File.exist?("public/images/products/#{self.image}")
             File.delete("public/images/products/#{self.image}")
         end
     end

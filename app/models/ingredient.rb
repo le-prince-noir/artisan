@@ -43,7 +43,7 @@ class Ingredient < ActiveRecord::Base
     end
 
   def cleanup
-        if File.exist?("public/images/ingredients/#{self.image}")
+        if self.image != nil && File.exist?("public/images/ingredients/#{self.image}")
             File.delete("public/images/ingredients/#{self.image}")
         end
   end
