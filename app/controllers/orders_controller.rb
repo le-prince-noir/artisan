@@ -8,16 +8,21 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
-    @order.cart = Cart.where(:actif => true).last
-    client = Client.find(params[:client])
-    @order.title = client.firstname+' '+client.lastname
-    if @order.save
-      self.mail(client)
-      redirect_to :action => "show", :id => @order.id
-      #redirect_to @order
+    if params[:client] != ""
+      @order = Order.new
+      @order.cart = Cart.where(:actif => true).last
+      client = Client.find(params[:client])
+      @order.title = client.firstname+' '+client.lastname
+      if @order.save
+        self.mail(client)
+        redirect_to :action => "show", :id => @order.id
+        #redirect_to @order
+      else
+        render "new"
+      end
     else
-      render "new"
+      flash[:alert] = "Le choix du client est obligatoire !"
+      redirect_to :action => "new"
     end
   end
 

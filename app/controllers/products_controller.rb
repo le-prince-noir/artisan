@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     @product.ingredients = addIngredients
     # puts YAML::dump( params )
 
-    if defined?(@product.image) && (@product.image.original_filename != '')
+    if @product.image != nil && defined?(@product.image) && (@product.image.original_filename != '')
       @product.image  = @product.save_image(@product.image, @product.title)
     end
     if @product.save
@@ -41,6 +41,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     addIngredients = [];
 
+
+
+
     if params[:product][:ingredients]
       params[:product][:ingredients].each do |id_ingredient|
         addIngredients.push(Ingredient.find(id_ingredient))
@@ -51,16 +54,13 @@ class ProductsController < ApplicationController
     end
 
     if params[:product][:image]
+      @product.cleanup
       @product.image  = @product.save_image(params[:product][:image], @product.title)
     end
 
-    # if defined?(@product.image_hidden) && @product.image_hidden.empty? && defined?(@product.image)
-    #   @product.save_image(@product.image)
-    #   @product.image = @product.image.original_filename
-    # end
+    # puts YAML::dump( @product )
 
-    # puts YAML::dump( params[:product][:id] )
-    if @product.update(product_params)
+    if @product.update_attributes(product_params_update)
       redirect_to :action => "index"
     else
       @ingredients = Ingredient.all
@@ -81,7 +81,10 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:title, :description, :marge, :slug,:image, :ingredients)
+    params.require(:product).permit(:title, :description, :marge, :slug, :image, :ingredients)
+  end
+  def product_params_update
+    params.require(:product).permit(:title, :description, :marge, :slug, :ingredients)
   end
 
 

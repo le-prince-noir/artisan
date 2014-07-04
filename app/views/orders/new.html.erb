@@ -1,7 +1,6 @@
 <h2>Valider votre commande</h2>
 <div class="panel panel-default">
   <div class="panel-body">
-
     <% totalCommande = 0 %>
     <% @cart.carts_products.each do |productCart| %>
     <p><%=" #{productCart.product.title} : #{productCart.quantity.round(0)} -> #{productCart.product.total * productCart.quantity} €"  %></p>
